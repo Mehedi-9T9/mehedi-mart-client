@@ -150,9 +150,9 @@ function App() {
 
   return (
     <>
-      <div className='flex'>
+      <div className='md:flex'>
         {/* assaide bar */}
-        <div className='w-[20%] h-screen bg-white'>
+        <div className='md:w-[20%] md:h-screen bg-white'>
           <h2 className='text-xl font-semibold pt-10 pl-5'> Categorization <FaArrowTurnDown className='inline-block' /></h2>
 
 
@@ -195,10 +195,10 @@ function App() {
         </div>
 
 
-        <div className='w-[80%]  pl-10 py-10 '>
+        <div className='md:w-[80%]  md:pl-10 md:py-10 '>
           {/* for bannar  todo*/}
           <div></div>
-          <div className='flex items-center gap-x-10 mb-3'>
+          <div className='md:flex items-center md:gap-x-10 mb-3'>
             <form onSubmit={handleSearch} className='flex gap-x-3'>
               <label className="input input-bordered flex items-center gap-2 ">
                 <input type="text" className="grow" name='title' placeholder="Search" />
@@ -217,7 +217,7 @@ function App() {
 
 
           {/* For Porducts */}
-          <div className='grid grid-cols-3 gap-4'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
 
             {
               products?.map(product => <div key={product?.productId} className="card bg-base-100  shadow-xl">

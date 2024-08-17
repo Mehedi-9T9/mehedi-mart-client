@@ -1,7 +1,32 @@
 import React from 'react';
 import { FaHome, FaShoppingCart } from "react-icons/fa";
+import UseAuthProvider from '../../../Hooks/UseAuthProvider';
+
+import { getAuth, signOut } from "firebase/auth";
+import { app } from '../../../../firebase/firebase.config';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const { users } = UseAuthProvider()
+    const auth = getAuth(app)
+    const handleLogout = () => {
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "Logout Successfull",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }).catch((error) => {
+            // An error happened.
+            console.log(error);
+        });
+
+    }
+
+
     return (
         <>
 
@@ -37,11 +62,11 @@ const Navbar = () => {
                     </div>
                     <div className="dropdown dropdown-end ml-2 md:ml-5">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                            {users ? <div className="w-10 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
                                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                            </div>
+                            </div> : <Link to="/login"><button className='text-white bg-black px-5 py-2 rounded'>Login</button></Link>}
                         </div>
                         <ul
                             tabIndex={0}
@@ -53,7 +78,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>
                 </div>

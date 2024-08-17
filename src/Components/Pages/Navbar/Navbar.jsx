@@ -3,7 +3,7 @@ import { FaHome, FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
     return (
-        <div>
+        <>
 
             <div className="navbar bg-base-100">
                 <div className="flex-1">
@@ -58,7 +58,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+        </>
     );
 };
 

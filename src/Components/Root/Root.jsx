@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Pages/Navbar/Navbar';
+import Footer from '../Pages/Footer/Footer';
 
 const Root = () => {
     return (
@@ -12,7 +13,7 @@ const Root = () => {
                 <Outlet></Outlet>
             </main>
             <footer>
-                this is footer
+                <Footer></Footer>
             </footer>
 
         </>

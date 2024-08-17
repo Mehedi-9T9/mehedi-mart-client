@@ -1,78 +1,144 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { FaArrowTurnDown } from 'react-icons/fa6'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [products, setProducts] = useState([])
+  const { isPending, error, data } = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      const res = await axios.get("http://localhost:5000/products")
+      setProducts(res.data)
+      return res.data
+
+    }
+    // fetch('https://api.github.com/repos/TanStack/query').then((res) =>
+    //   res.json(),
+    //  const res=await axios.get("http://localhost:5000/products")
+    //   .then((res)=> res.json())
+    //     ),
+
+  })
+
+
+
+
+  if (isPending) {
+    return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
+  }
+
+
+
+  // console.log(count);
+  const handleBrand = (e) => {
+    e.preventDefault()
+    const brand = e.target.value
+    console.log(brand);
+    // setCount(priceRange)
+  }
+  const handleCategory = (e) => {
+    e.preventDefault()
+    const category = e.target.value
+    console.log(category);
+    // setCount()
+  }
+  const handleMinPrice = (e) => {
+    e.preventDefault()
+    const minPrice = e.target.value
+    console.log(minPrice);
+    // setCount(priceRange)
+  }
+  const handleMaxPrice = (e) => {
+    e.preventDefault()
+    const maxPrice = e.target.value
+    console.log(maxPrice);
+    // setCount(priceRange)
+  }
 
   return (
     <>
-      <h2 className='text-5xl text-red-700'>Hello Bangladesh</h2>
+      <div className='flex'>
+        {/* assaide bar */}
+        <div className='w-[20%] h-screen bg-white'>
+          <h2 className='text-xl font-semibold pt-10 pl-5'> Categorization <FaArrowTurnDown className='inline-block' /></h2>
 
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7" />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-              <li><a>Homepage</a></li>
-              <li><a>Portfolio</a></li>
-              <li><a>About</a></li>
-            </ul>
+          <h2 className='text-xl font-semibold pl-10 mt-5'>Brand</h2>
+          <select onChange={handleBrand} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs">
+            <option disabled selected>All Brand</option>
+            <option>Samsung</option>
+            <option>Xami</option>
+            <option>Apple</option>
+          </select>
+
+          <h2 className='text-xl font-semibold pl-10 mt-5'>Cagetory</h2>
+          <select onChange={handleCategory} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs">
+            <option disabled selected>All Category</option>
+            <option>Mobile</option>
+            <option>Laptop</option>
+            <option>Watch</option>
+
+          </select>
+
+          <h2 className='text-xl font-semibold pl-10 mt-5'>Price Range</h2>
+
+          <label className='pl-12'>
+            Min
+            <input type="number" name="" id="" onChange={handleMinPrice} className='border w-[100px] rounded ml-2' />
+          </label>
+          <label className='block pl-12 mt-2' >
+            Max
+            <input type="number" name="" id="" onChange={handleMaxPrice} className='border w-[100px] rounded ml-2' />
+          </label>
+
+
+
+
+
+        </div>
+
+
+        <div className='w-[80%]  pl-10 py-10 '>
+          {/* for bannar  todo*/}
+          <div></div>
+
+
+          {/* For Porducts */}
+          <div className='grid grid-cols-3 gap-4'>
+
+            {
+              products?.map(product => <div key={product?.productId} className="card bg-base-100  shadow-xl">
+                <figure className="px-10 pt-10">
+                  <img
+                    src={product?.img}
+                    alt={product.title}
+                    className="rounded-xl" />
+                </figure>
+                <div className="card-body items-center text-center">
+                  <div className='flex gap-x-10'>
+                    <p>Price : {product?.price}</p>
+                    <p>Brand: {product?.brand}</p>
+                  </div>
+                  <h2 className="card-title">{product?.title}</h2>
+
+
+                </div>
+              </div>)
+            }
+
+
+
           </div>
-        </div>
-        <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div>
-        <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
+
         </div>
       </div>
+
+
+
+
+
     </>
   )
 }

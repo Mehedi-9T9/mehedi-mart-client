@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa6';
 
 const Login = () => {
-    const { loginUser } = UseAuthProvider()
+    const { loginUser, googleLogin } = UseAuthProvider()
     const navigate = useNavigate()
     const handleLogin = (e) => {
         e.preventDefault()
@@ -46,6 +46,36 @@ const Login = () => {
             });
 
     }
+
+    const handleGoogle = () => {
+        googleLogin()
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                if (user) {
+                    navigate("/")
+
+                }
+
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+                // The email of the user's account used.
+                // const email = error.customData.email;
+                // The AuthCredential type that was used.
+                // const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+                console.log(error);
+            });
+
+
+    }
     return (
         <div className='md:p-20'>
             <div className=" bg-base-100  w-96 mx-auto rounded">
@@ -71,7 +101,7 @@ const Login = () => {
                     </div>
                 </form>
                 <div className='flex items-center justify-around pb-5'>
-                    <button><FaGoogle className='text-3xl text-green-700'></FaGoogle></button>
+                    <button onClick={handleGoogle}><FaGoogle className='text-3xl text-green-700'></FaGoogle></button>
                     <Link to="/rejister"><p className='text-blue-700 font-bold'>Go Rejister</p></Link>
                 </div>
 

@@ -13,7 +13,7 @@ function App() {
   const [brand, setBrand] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
   // const [minPrice, setMinPrice] = useState(null)
-  console.log(currentPage);
+
 
 
   // const { isPending, error, data } = useQuery({
@@ -26,7 +26,7 @@ function App() {
   // })
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/products?page=${currentPage}`)
+    axios.get(`https://mehedi-mart-serverside.vercel.app/products?page=${currentPage}`)
       .then(res => setProducts(res.data))
   }, [currentPage])
 
@@ -38,17 +38,17 @@ function App() {
   const handleSearch = (e) => {
     e.preventDefault()
     const title = e.target.title.value
-    axios.get(`http://localhost:5000/products/title?title=${title}`)
+    axios.get(`https://mehedi-mart-serverside.vercel.app/products/title?title=${title}`)
       .then(res => setProducts(res.data))
 
   }
 
   const handleLowToHigh = () => {
-    axios.get("http://localhost:5000/products/lowToHigh")
+    axios.get("https://mehedi-mart-serverside.vercel.app/products/lowToHigh")
       .then(res => setProducts(res.data))
   }
   const handleHighToLow = () => {
-    axios.get("http://localhost:5000/products/highToLow")
+    axios.get("https://mehedi-mart-serverside.vercel.app/products/highToLow")
       .then(res => setProducts(res.data))
   }
 
@@ -57,7 +57,7 @@ function App() {
     const catego = e.target.value
     const lowCategory = catego.toLowerCase()
     setCategory(lowCategory)
-    axios.get(`http://localhost:5000/products/category/?category=${lowCategory}`)
+    axios.get(`https://mehedi-mart-serverside.vercel.app/products/category/?category=${lowCategory}`)
       .then(res => setProducts(res.data))
 
   }
@@ -69,10 +69,10 @@ function App() {
     const lowBrand = brand.toLowerCase()
     setBrand(lowBrand)
     if (category) {
-      axios.get(`http://localhost:5000/products/categoryBrand/?brand=${lowBrand}&category=${category}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/categoryBrand/?brand=${lowBrand}&category=${category}`)
         .then(res => setProducts(res.data))
     } else {
-      axios.get(`http://localhost:5000/products/brand/?brand=${lowBrand}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/brand/?brand=${lowBrand}`)
         .then(res => setProducts(res.data))
 
     }
@@ -87,22 +87,22 @@ function App() {
 
 
     if (category) {
-      axios.get(`http://localhost:5000/products/categoryPrice/?min=${minPrice}&max=${maxPrice}&category=${category}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/categoryPrice/?min=${minPrice}&max=${maxPrice}&category=${category}`)
         .then(res => setProducts(res.data))
 
     }
     if (brand) {
-      axios.get(`http://localhost:5000/products/brandPrice/?min=${minPrice}&max=${maxPrice}&brand=${brand}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/brandPrice/?min=${minPrice}&max=${maxPrice}&brand=${brand}`)
         .then(res => setProducts(res.data))
 
 
     }
     if (category && brand) {
-      axios.get(`http://localhost:5000/products/mixed/?min=${minPrice}&max=${maxPrice}&category=${category}&brand=${brand}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/mixed/?min=${minPrice}&max=${maxPrice}&category=${category}&brand=${brand}`)
         .then(res => setProducts(res.data))
 
     } else {
-      axios.get(`http://localhost:5000/products/price/?min=${minPrice}&max=${maxPrice}`)
+      axios.get(`https://mehedi-mart-serverside.vercel.app/products/price/?min=${minPrice}&max=${maxPrice}`)
         .then(res => setProducts(res.data))
 
     }

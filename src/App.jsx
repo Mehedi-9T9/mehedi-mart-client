@@ -35,6 +35,15 @@ function App() {
 
   }
 
+  const handleLowToHigh = () => {
+    axios.get("http://localhost:5000/products/lowToHigh")
+      .then(res => setProducts(res.data))
+  }
+  const handleHighToLow = () => {
+    axios.get("http://localhost:5000/products/highToLow")
+      .then(res => setProducts(res.data))
+  }
+
   const handleCategory = (e) => {
     e.preventDefault()
     const catego = e.target.value
@@ -159,8 +168,8 @@ function App() {
             <div className="dropdown dropdown-bottom">
               <div tabIndex={0} role="button" className="btn m-1">Short By</div>
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
+                <li><a onClick={handleLowToHigh}>Low To High</a></li>
+                <li><a onClick={handleHighToLow}>High To Low</a></li>
               </ul>
             </div>
           </div>

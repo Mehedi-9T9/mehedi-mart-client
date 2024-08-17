@@ -3,6 +3,7 @@ import './App.css'
 import { FaArrowTurnDown } from 'react-icons/fa6'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import { FaSearch } from 'react-icons/fa'
 
 function App() {
 
@@ -24,6 +25,14 @@ function App() {
 
   if (isPending) {
     return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
+  }
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const title = e.target.title.value
+    axios.get(`http://localhost:5000/products/title?title=${title}`)
+      .then(res => setProducts(res.data))
+
   }
 
   const handleCategory = (e) => {
@@ -139,6 +148,22 @@ function App() {
         <div className='w-[80%]  pl-10 py-10 '>
           {/* for bannar  todo*/}
           <div></div>
+          <div className='flex items-center gap-x-10 mb-3'>
+            <form onSubmit={handleSearch} className='flex gap-x-3'>
+              <label className="input input-bordered flex items-center gap-2 ">
+                <input type="text" className="grow" name='title' placeholder="Search" />
+                <FaSearch></FaSearch>
+              </label>
+              <button className='text-xl font-medium bg-black text-white px-5 py-2 rounded'>Search</button>
+            </form>
+            <div className="dropdown dropdown-bottom">
+              <div tabIndex={0} role="button" className="btn m-1">Short By</div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li><a>Item 1</a></li>
+                <li><a>Item 2</a></li>
+              </ul>
+            </div>
+          </div>
 
 
           {/* For Porducts */}

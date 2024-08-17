@@ -1,31 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { FaArrowTurnDown } from 'react-icons/fa6'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
+import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr'
 
 function App() {
 
   const [products, setProducts] = useState([])
   const [category, setCategory] = useState(null)
   const [brand, setBrand] = useState(null)
+  const [currentPage, setCurrentPage] = useState(0)
   // const [minPrice, setMinPrice] = useState(null)
+  console.log(currentPage);
 
 
-  const { isPending, error, data } = useQuery({
-    queryKey: ['products'],
-    queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/products")
-      setProducts(res.data)
-      return res.data
-    }
-  })
+  // const { isPending, error, data } = useQuery({
+  //   queryKey: ['products'],
+  //   queryFn: async () => {
+  //     const res = await axios.get(`http://localhost:5000/products?page=${currentPage}`)
+  //     setProducts(res.data)
+  //     return res.data
+  //   }
+  // })
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/products?page=${currentPage}`)
+      .then(res => setProducts(res.data))
+  }, [currentPage])
 
 
-  if (isPending) {
-    return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
-  }
+  // if (isPending) {
+  //   return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
+  // }
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -53,8 +61,7 @@ function App() {
       .then(res => setProducts(res.data))
 
   }
-  console.log(brand);
-  console.log(products);
+
   // console.log(count);
   const handleBrand = (e) => {
     e.preventDefault()
@@ -103,8 +110,42 @@ function App() {
 
 
 
-    // setCount(priceRange)
+
+
+
+
+
   }
+
+
+  // const perpageItem = 6
+  const totalProducts = 40
+  const totalStep = Math.ceil(totalProducts / 6)
+  const pages = [...Array(totalStep).keys()]
+
+  const handlePage = (count) => {
+    setCurrentPage(count)
+
+  }
+  const previewHandle = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+
+    }
+    else {
+      return
+    }
+
+  }
+
+  const nextHandle = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+    else { return }
+  }
+
+
 
 
   return (
@@ -199,6 +240,15 @@ function App() {
             }
 
 
+
+          </div>
+
+          <div className='mt-5'>
+            <button onClick={previewHandle} className='btn bg-[#FFF] md:ml-2'><GrCaretPrevious /></button>
+            {
+              pages?.map(page => <button onClick={() => handlePage(page)} className={`btn ${currentPage == page && 'bg-[#F63E7B]'}`} key={page}>{page + 1}</button>)
+            }
+            <button onClick={nextHandle} className='btn bg-[#FFF]'><GrCaretNext /></button>
 
           </div>
 

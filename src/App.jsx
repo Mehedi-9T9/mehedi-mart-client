@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { FaArrowTurnDown } from 'react-icons/fa6'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
 import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr'
 import { MdCategory } from "react-icons/md";
 import ProductCart from './Components/SharedPages/ProductCart/ProductCart'
+import Banar from './Components/Pages/Banar/Banar'
 
 function App() {
 
@@ -219,6 +219,7 @@ function App() {
         <div className='md:w-[80%] mx-5 md:mx-0  md:pl-10 md:py-10 '>
           {/* for bannar  todo*/}
           <div>
+            <Banar />
 
           </div>
           <div className='md:flex items-center md:gap-x-10 mb-3'>

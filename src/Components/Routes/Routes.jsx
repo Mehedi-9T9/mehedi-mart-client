@@ -6,6 +6,7 @@ import Login from '../Pages/Authentication/Login';
 import Rejister from '../Pages/Authentication/Rejister';
 import SetUser from '../NewWork/SetUser';
 import ShowUsers from '../NewWork/ShowUsers';
+import Details from '../Pages/Details/Details';
 
 const Routes = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/",
                 element: <App></App>
+            },
+            {
+                path: "/details/:id",
+                element: <Details />
             }
         ]
     },

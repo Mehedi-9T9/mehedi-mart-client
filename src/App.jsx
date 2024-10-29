@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
 import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr'
+import { MdCategory } from "react-icons/md";
 
 function App() {
 
@@ -154,31 +155,35 @@ function App() {
     <>
       <div className='md:flex'>
         {/* assaide bar */}
-        <div className='md:w-[20%] md:h-screen bg-slate-50'>
-          <h2 className='text-xl font-semibold pt-10 pl-5'> Categorization <FaArrowTurnDown className='inline-block' /></h2>
+        <div className='md:w-[20%]  bg-slate-50'>
+          <h2 className='text-2xl font-semibold pt-10   flex items-center justify-center text-blue-400 gap-x-3'> Categorization <MdCategory className='text-black text-2xl' /></h2>
 
 
-          <h2 className='text-xl text-center md:text-start font-semibold pl-10 mt-5'>Cagetory</h2>
-          <select onChange={handleCategory} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs">
+          <h2 className='text-xl text-center pl-0 md:pl-8 md:text-start font-semibold mt-5'>Cagetory</h2>
+        <div className='flex md:justify-start justify-center items-center'>
+        <select onChange={handleCategory} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs text-blue-400">
             <option disabled selected>All Category</option>
             <option>Mobile</option>
             <option>Laptop</option>
             <option>Watch</option>
 
           </select>
-          <h2 className='text-xl font-semibold pl-10 mt-5'>Brand</h2>
-          <select onChange={handleBrand} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs">
+        </div>
+          <h2 className='text-xl text-center pl-0 md:pl-8 md:text-start font-semibold mt-5'>Brand</h2>
+          <div className='flex md:justify-start justify-center items-center'>
+          <select onChange={handleBrand} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs text-blue-400">
             <option disabled selected>All Brand</option>
             <option>Samsung</option>
             <option>Asus</option>
             <option>Apple</option>
           </select>
+          </div>
 
 
 
-          <h2 className='text-xl font-semibold pl-10 mt-5'>Price Range</h2>
-
-          <form onSubmit={handlePrice}>
+          <h2 className='text-xl text-center pl-0 md:pl-8 md:text-start font-semibold mt-5'>Price Range</h2>
+          <div className='flex md:justify-start justify-center items-center'>
+          <form className='text-blue-400' onSubmit={handlePrice}>
             <label className='pl-12'>
               Min
               <input type="number" name="min" defaultValue="10000" id="" className='border w-[100px] rounded ml-2' />
@@ -187,8 +192,21 @@ function App() {
               Max
               <input type="number" name="max" defaultValue="30000" id="" className='border w-[100px] rounded ml-2' />
             </label>
-            <button className='bg-black text-white text-center px-5 py-1 ml-20 mt-2'>Search</button>
+            <div className='flex justify-center mt-3 ml-12'>
+            <button className='btn bg-blue-400 text-black text-center w-[97%]'>Search</button>
+            </div>
           </form>
+          </div>
+
+          <div className="dropdown dropdown-bottom flex justify-center mt-3">
+              <div tabIndex={0} role="button" className="btn bg-blue-400  w-[85%] ">Short By</div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li><a onClick={handleLowToHigh}>Low To High</a></li>
+                <li><a onClick={handleHighToLow}>High To Low</a></li>
+              </ul>
+            </div>
+
+          
 
 
 
@@ -201,20 +219,14 @@ function App() {
           {/* for bannar  todo*/}
           <div></div>
           <div className='md:flex items-center md:gap-x-10 mb-3'>
-            <form onSubmit={handleSearch} className='flex gap-x-3'>
+            <form onSubmit={handleSearch} className='flex flex-col md:hidden gap-y-3 p-5'>
               <label className="input input-bordered flex items-center gap-2 ">
                 <input type="text" className="grow" name='title' placeholder="Search" />
                 <FaSearch></FaSearch>
               </label>
-              <button className='text-xl font-medium bg-black text-white px-5 py-2 rounded'>Search</button>
+              <button className='btn bg-blue-400 text-white '>Search</button>
             </form>
-            <div className="dropdown dropdown-bottom">
-              <div tabIndex={0} role="button" className="btn m-1">Short By</div>
-              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                <li><a onClick={handleLowToHigh}>Low To High</a></li>
-                <li><a onClick={handleHighToLow}>High To Low</a></li>
-              </ul>
-            </div>
+            
           </div>
 
 

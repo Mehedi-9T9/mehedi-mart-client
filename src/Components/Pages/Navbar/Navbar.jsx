@@ -78,7 +78,7 @@ const navItems=[
   </div>
   <div className="navbar-center hidden lg:flex">
   <form  className='flex gap-x-3'>
-              <label className="input input-bordered border-blue-400 rounded-full flex items-center gap-2  ">
+              <label className="input input-bordered border-blue-400 rounded-full flex items-center gap-2 pl-5 ">
                 <input type="text" className="grow  placeholder-black " name='title' placeholder="Search" /> 
               </label>
               <button className='btn btn-circle bg-blue-400'><FaSearch className='text-black'></FaSearch></button>
@@ -95,8 +95,8 @@ const navItems=[
         
     </ul>
   {users ? <div className="">
-<button onClick={handleLogout} className='btn bg-blue-400 text-black'> Logout</button>
- </div> : <Link to="/login"><button className='btn bg-blue-400 text-black'>Login</button></Link>}
+<button onClick={handleLogout} className='btn bg-blue-400 text-black '> Logout</button>
+ </div> : <Link to="/login"><button className='btn bg-blue-400 text-black '>Login</button></Link>}
   </div>
 </div>
 

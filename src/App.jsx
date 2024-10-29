@@ -6,6 +6,7 @@ import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
 import { GrCaretNext, GrCaretPrevious } from 'react-icons/gr'
 import { MdCategory } from "react-icons/md";
+import ProductCart from './Components/SharedPages/ProductCart/ProductCart'
 
 function App() {
 
@@ -155,7 +156,7 @@ function App() {
     <>
       <div className='md:flex'>
         {/* assaide bar */}
-        <div className='md:w-[20%]  bg-slate-50'>
+        <div className='md:w-[20%] mx-5 md:mx-0 bg-slate-50 shadow-md'>
           <h2 className='text-2xl font-semibold pt-10   flex items-center justify-center text-blue-400 gap-x-3'> Categorization <MdCategory className='text-black text-2xl' /></h2>
 
 
@@ -198,7 +199,7 @@ function App() {
           </form>
           </div>
 
-          <div className="dropdown dropdown-bottom flex justify-center mt-3">
+          <div className="dropdown dropdown-bottom flex justify-center mt-3 pb-9 md:pb-0">
               <div tabIndex={0} role="button" className="btn bg-blue-400  w-[85%] ">Short By</div>
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                 <li><a onClick={handleLowToHigh}>Low To High</a></li>
@@ -215,9 +216,11 @@ function App() {
         </div>
 
 
-        <div className='md:w-[80%]  md:pl-10 md:py-10 '>
+        <div className='md:w-[80%] mx-5 md:mx-0  md:pl-10 md:py-10 '>
           {/* for bannar  todo*/}
-          <div></div>
+          <div>
+
+          </div>
           <div className='md:flex items-center md:gap-x-10 mb-3'>
             <form onSubmit={handleSearch} className='flex flex-col md:hidden gap-y-3 p-5'>
               <label className="input input-bordered flex items-center gap-2 ">
@@ -234,23 +237,7 @@ function App() {
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
 
             {
-              products?.map(product => <div key={product?.productId} className="card bg-base-100  shadow-xl">
-                <figure className="px-10 pt-10">
-                  <img
-                    src={product?.img}
-                    alt={product.title}
-                    className="rounded-xl" />
-                </figure>
-                <div className="card-body items-center text-center">
-                  <div className='flex gap-x-10'>
-                    <p>Price : {product?.price}</p>
-                    <p>Brand: {product?.brand}</p>
-                  </div>
-                  <h2 className="card-title">{product?.title}</h2>
-
-
-                </div>
-              </div>)
+              products?.map(product => <ProductCart key={product?.productId} product={product}/>)
             }
 
 

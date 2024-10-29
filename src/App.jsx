@@ -12,28 +12,30 @@ function App() {
   const [category, setCategory] = useState(null)
   const [brand, setBrand] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
+  
   // const [minPrice, setMinPrice] = useState(null)
 
 
 
-  // const { isPending, error, data } = useQuery({
-  //   queryKey: ['products'],
-  //   queryFn: async () => {
-  //     const res = await axios.get(`http://localhost:5000/products?page=${currentPage}`)
-  //     setProducts(res.data)
-  //     return res.data
-  //   }
-  // })
+  const { isPending, error, data } = useQuery({
+    queryKey: ['products', currentPage],
+    refetchOnMount: 'always',
+    queryFn: async () => {
+      const res = await axios.get(`https://mehedi-mart-serverside.vercel.app/products?page=${currentPage}`)
+      setProducts(res.data)
+      return res.data
+    }
+  })
 
-  useEffect(() => {
-    axios.get(`https://mehedi-mart-serverside.vercel.app/products?page=${currentPage}`)
-      .then(res => setProducts(res.data))
-  }, [currentPage])
+  // useEffect(() => {
+  //   axios.get(`https://mehedi-mart-serverside.vercel.app/products?page=${currentPage}`)
+  //     .then(res => setProducts(res.data))
+  // }, [currentPage])
 
 
-  // if (isPending) {
-  //   return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
-  // }
+  if (isPending) {
+    return <h2 className='text-5xl font-bold text-red-700 text-center'>Loading data ....</h2>
+  }
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -152,11 +154,11 @@ function App() {
     <>
       <div className='md:flex'>
         {/* assaide bar */}
-        <div className='md:w-[20%] md:h-screen bg-white'>
+        <div className='md:w-[20%] md:h-screen bg-slate-50'>
           <h2 className='text-xl font-semibold pt-10 pl-5'> Categorization <FaArrowTurnDown className='inline-block' /></h2>
 
 
-          <h2 className='text-xl font-semibold pl-10 mt-5'>Cagetory</h2>
+          <h2 className='text-xl text-center md:text-start font-semibold pl-10 mt-5'>Cagetory</h2>
           <select onChange={handleCategory} className="select focus:outline-none focus:border-none focus:px-5 ml-5 max-w-xs">
             <option disabled selected>All Category</option>
             <option>Mobile</option>

@@ -5,7 +5,14 @@
         price: 20000,
         category: "mobile",
         brand: "samsung",
-        img: "https://i.ibb.co/0rzBr9V/download.jpg"
+        img: "https://i.ibb.co/0rzBr9V/download.jpg",
+        memory: "4/128GB | 6/128GB",
+        network: "GMS/HSPA/5G",
+        weight: "197 grams",
+        display: "6.6 Inch",
+        chipset: "Qualcomm SM7225 Snapdragon 750G 5G",
+        selfieCamera: "8MP | 1080p Recording",
+        Camera: "50MP Wide | 4K@30fps"
     },
     {
         title: "Samsung Galaxy A15",
@@ -13,7 +20,14 @@
         price: 15000,
         category: "mobile",
         brand: "samsung",
-        img: "https://i.ibb.co/d732z7w/download-1.jpg"
+        img: "https://i.ibb.co/d732z7w/download-1.jpg",
+        memory: "4/128GB | 6/128GB",
+        network: "GMS/HSPA/4G",
+        weight: "197 grams",
+        display: "6.5 Inch",
+        chipset: "Mediatek Helio G99 (6 nm)",
+        selfieCamera: "13MP | 1080p Recording",
+        Camera: "50MP Wide | 4K@30fps"
     },
     {
         title: "Samsung Galaxy Book 2",
@@ -21,7 +35,14 @@
         price: 25000,
         category: "laptop",
         brand: "samsung",
-        img: "https://i.ibb.co/Y05jJgq/download-2.jpg"
+        img: "https://i.ibb.co/Y05jJgq/download-2.jpg",
+        memory: "4/128GB | 6/128GB",
+        network: "GMS/HSPA/4G",
+        weight: "197 grams",
+        display: "6.5 Inch",
+        chipset: "Mediatek Helio G99 (6 nm)",
+        selfieCamera: "13MP | 1080p Recording",
+        Camera: "50MP Wide | 4K@30fps"
     },
     {
         title: "Samsung Galaxy Book C",

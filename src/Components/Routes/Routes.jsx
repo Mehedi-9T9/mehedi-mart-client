@@ -4,6 +4,8 @@ import Root from '../Root/Root';
 import App from '../../App';
 import Login from '../Pages/Authentication/Login';
 import Rejister from '../Pages/Authentication/Rejister';
+import SetUser from '../NewWork/SetUser';
+import ShowUsers from '../NewWork/ShowUsers';
 
 const Routes = createBrowserRouter([
     {
@@ -23,6 +25,14 @@ const Routes = createBrowserRouter([
     {
         path: "/rejister",
         element: <Rejister></Rejister>
+    },
+    {
+        path: "/setuser",
+        element: <SetUser></SetUser>
+    },
+    {
+        path: "/showusers",
+        element: <ShowUsers></ShowUsers>
     }
 ])
 

@@ -7,6 +7,7 @@ import Rejister from '../Pages/Authentication/Rejister';
 import SetUser from '../NewWork/SetUser';
 import ShowUsers from '../NewWork/ShowUsers';
 import Details from '../Pages/Details/Details';
+import MyCart from '../Pages/MyCart/MyCart';
 
 const Routes = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/",
                 element: <App></App>
+            },
+            {
+                path: "/mycart",
+                element: <MyCart />
             },
             {
                 path: "/details/:id",

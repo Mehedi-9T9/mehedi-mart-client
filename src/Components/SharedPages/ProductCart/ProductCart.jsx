@@ -1,10 +1,38 @@
+import axios from 'axios';
 import React from 'react';
 import { TbCoinTakaFilled, TbBrandAirtable } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const ProductCart = ({product}) => {
     const {img, title, price, brand, productId}=product
+    //handle add to cart
+    const handleAddToCart =(product)=>{
+        console.log("handleCart",product);
+        
+        delete product._id
+        axios.post("http://localhost:5000/products/myCart", product)
+        .then(res => {
+          if(res.data.insertedId){
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "Product Added Successfull",
+              showConfirmButton: false,
+              timer: 1500
+          });
+          }else{
+            Swal.fire({
+              position: "top",
+              icon: "fail",
+              title: "Sorry Fail Added",
+              showConfirmButton: false,
+              timer: 1500
+          });
+          }
+        })
+    }
    
 
     return (
@@ -22,7 +50,7 @@ const ProductCart = ({product}) => {
                 <h2 className="card-title text-black">{title}</h2>
                   <div className='flex gap-x-10'>
                     <Link to={`/details/${productId}`}><button className='btn bg-blue-400 text-black'>Details</button></Link>
-                    <button className='btn bg-blue-400 text-black'>Add To Cart</button>
+                    <button onClick={()=>handleAddToCart(product)} className='btn bg-blue-400 text-black'>Add To Cart</button>
                   </div>
                  
 

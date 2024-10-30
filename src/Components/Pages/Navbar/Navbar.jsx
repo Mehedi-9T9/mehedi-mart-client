@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import UseAuthProvider from '../../../Hooks/UseAuthProvider';
 
@@ -6,6 +6,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { app } from '../../../../firebase/firebase.config';
 import { Link, useLocation } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import axios from 'axios';
 
 const Navbar = () => {
     const { users } = UseAuthProvider()
@@ -26,6 +27,7 @@ const Navbar = () => {
         });
 
     }
+    
     const pathName =useLocation()
 
 const navItems=[
@@ -39,6 +41,7 @@ const navItems=[
     }
     
 ]
+
 
     return (
         <>

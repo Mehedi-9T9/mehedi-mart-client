@@ -39,15 +39,15 @@ const MyCart = () => {
     },[toggle])
 
     return (
-        <div className='flex justify-between'>
-           <div className='w-[60%]'>
+        <div className='flex flex-col-reverse md:flex-row justify-between mx-5 md:mx-0'>
+           <div className='md:w-[60%]'>
             {
                 products.map(product => <MycartCart key={product.productId} product={product} handleRemove={handleRemove} />)
             }
            </div>
 
 
-           <div className='w-[35%] bg-gray-200 my-5 p-7 rounded'>
+           <div className='md:w-[35%] bg-gray-200 my-5 p-7 rounded'>
             <h2 className='text-2xl font-bold text-black'>Your Selected Products <span className='text-blue-400 ml-3'>{products.length}</span></h2>
 
            </div>

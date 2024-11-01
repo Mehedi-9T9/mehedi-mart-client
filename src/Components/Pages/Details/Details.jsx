@@ -5,11 +5,13 @@ import { Link, useParams } from 'react-router-dom';
 import { TbCoinTakaFilled, TbBrandAirtable } from "react-icons/tb";
 import { SiSimilarweb } from "react-icons/si";
 import ProductCart from '../../SharedPages/ProductCart/ProductCart';
+import UseAuthProvider from '../../../Hooks/UseAuthProvider';
 
 const Details = () => {
     const {id} =useParams()
     const [product,setProduct]=useState({})
     const [similarProduct,setSimilarProduct]=useState([])
+    const{handleAddToCart}=UseAuthProvider()
 
    useEffect(()=>{
     axios.get(`http://localhost:5000/products/singleData/?id=${id}`)
@@ -46,7 +48,7 @@ const Details = () => {
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur dolorum accusantium fugiat corporis porro est consequuntur! Doloribus dolore unde iste error, distinctio eveniet, in commodi eum quis voluptate, provident eaque.</p>
             <div className='space-x-10 mt-3'>
                 <Link to="/"><button className='btn bg-blue-400 text-black font-bold'>Go Back</button></Link>
-                <button className='btn bg-blue-400 text-black'>Add To Cart</button>
+                <button onClick={()=>handleAddToCart(product)} className='btn bg-blue-400 text-black'>Add To Cart</button>
             </div>
 
             </div>

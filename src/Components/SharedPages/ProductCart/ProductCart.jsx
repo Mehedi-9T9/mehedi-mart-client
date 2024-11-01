@@ -3,36 +3,38 @@ import React from 'react';
 import { TbCoinTakaFilled, TbBrandAirtable } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UseAuthProvider from '../../../Hooks/UseAuthProvider';
 
 
 const ProductCart = ({product}) => {
     const {img, title, price, brand, productId}=product
     //handle add to cart
-    const handleAddToCart =(product)=>{
-        console.log("handleCart",product);
+    // const handleAddToCart =(product)=>{
+    //     console.log("handleCart",product);
         
-        delete product._id
-        axios.post("http://localhost:5000/products/myCart", product)
-        .then(res => {
-          if(res.data.insertedId){
-            Swal.fire({
-              position: "top",
-              icon: "success",
-              title: "Product Added Successfull",
-              showConfirmButton: false,
-              timer: 1500
-          });
-          }else{
-            Swal.fire({
-              position: "top",
-              icon: "fail",
-              title: "Sorry Fail Added",
-              showConfirmButton: false,
-              timer: 1500
-          });
-          }
-        })
-    }
+    //     delete product._id
+    //     axios.post("http://localhost:5000/products/myCart", product)
+    //     .then(res => {
+    //       if(res.data.insertedId){
+    //         Swal.fire({
+    //           position: "top",
+    //           icon: "success",
+    //           title: "Product Added Successfull",
+    //           showConfirmButton: false,
+    //           timer: 1500
+    //       });
+    //       }else{
+    //         Swal.fire({
+    //           position: "top",
+    //           icon: "fail",
+    //           title: "Sorry Fail Added",
+    //           showConfirmButton: false,
+    //           timer: 1500
+    //       });
+    //       }
+    //     })
+    // }
+    const {handleAddToCart}=UseAuthProvider()
    
 
     return (
